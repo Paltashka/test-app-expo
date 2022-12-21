@@ -1,85 +1,42 @@
+import React from "react";
+import { Image, StyleSheet, Text, View, Modal } from "react-native";
+import { Button } from "../components/Button/Button";
+import LogoModal from "../assets/images/Vector.png";
+import { useNavigation } from "@react-navigation/native";
+import bannerImg from "../assets/images/banner_logos.png";
+import logoImg from "../assets/images/logo_white.png";
+
 import {
   ImageBackground,
-  StyleSheet,
-  Text,
   SafeAreaView,
-  Image,
-  View,
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import bannerImg from "../assets/images/banner.png";
-import logoImg from "../assets/images/logo.png";
+
 import CloseIcon from "../assets/images/close.png";
-
 import { ButtonRegistrtion } from "../components/Registration-button/ButtonRegistrtion";
-import { useNavigation } from "@react-navigation/native";
 
-const WelcomeScreen = () => {
-  const navigation = useNavigation();
-  return (
-    <SafeAreaView>
-      <ImageBackground
-        source={bannerImg}
-        style={styles.bannerStyle}
-        resizeMode="cover"
-      >
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={CloseIcon} style={styles.closeIcon} />
-        </TouchableOpacity>
-        <Image source={logoImg} style={styles.logoStyle} />
-      </ImageBackground>
-      <View style={styles.bodyStyle}>
-        <Text style={styles.title}>Play, earn, redeem,</Text>
-        <Text style={[styles.title, { color: "#310CE3" }]}>repeat.</Text>
-      </View>
-      <View style={[styles.bodyStyle, { marginTop: 32 }]}>
-        <ButtonRegistrtion
-          text="Continue with Apple"
-          type="apple"
-          logIn={() => console.log()}
-        />
-        <ButtonRegistrtion
-          text="Continue with Google"
-          type="google"
-          logIn={() => console.log()}
-        />
-        <ButtonRegistrtion
-          text="Continue with Twitter"
-          type="twitter"
-          logIn={() => console.log()}
-        />
-      </View>
-      <Text
-        style={styles.continueStyle}
-        onPress={() => navigation.navigate("Registration")}
-      >
-        Continue with Email
-      </Text>
-    </SafeAreaView>
-  );
-};
-export default WelcomeScreen;
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: "#131781",
+    width: "100%",
+    height: 1200,
   },
   bannerStyle: {
-    width: "100%",
-    height: 325,
+    width: 430,
+    height: 180,
     position: "relative",
   },
   logoStyle: {
     position: "absolute",
     bottom: -90,
-    left: "25%",
+    left: "40%",
   },
   title: {
-    fontSize: 32,
+    fontSize: 47,
     fontWeight: "bold",
   },
   bodyStyle: {
-    marginTop: 68,
     marginHorizontal: 24,
     alignItems: "center",
   },
@@ -94,3 +51,57 @@ const styles = StyleSheet.create({
     top: -20,
   },
 });
+
+const WelcomeScreen = ({ route }: any) => {
+  const navigation = useNavigation();
+  return (
+    <SafeAreaView style={styles2.container}>
+      <View style={[styles2.bodyStyle, { marginTop: 80 }]}>
+        <Image source={logoImg} style={styles2.logoStyle} />
+      </View>
+
+      <View style={styles2.bodyStyle}>
+        <Text style={[styles2.title, { color: "white" }, { marginTop: 120 }]}>
+          Play, reward,
+        </Text>
+        <Text style={[styles2.title, { color: "#67CBB5" }]}>repeat.</Text>
+      </View>
+      <View style={styles2.bodyStyle}>
+        <ImageBackground
+          source={bannerImg}
+          style={[styles2.bannerStyle, { marginTop: 60 }]}
+          resizeMode="cover"
+        ></ImageBackground>
+      </View>
+      <View style={[styles2.bodyStyle, { marginTop: 32 }]}>
+        <ButtonRegistrtion
+          text="Continue with Apple"
+          type="apple"
+          logIn={() => console.log()}
+        />
+        <ButtonRegistrtion
+          text="Continue with Google"
+          type="google"
+          logIn={() => console.log()}
+        />
+
+        <Button
+          text="Start as a guest"
+          type="play"
+          onClick={() => {
+            route.params.goToNextStep();
+            navigation.navigate("TabHomeScreen", { next: () => {} });
+          }}
+        />
+      </View>
+      <Text
+        style={styles2.continueStyle}
+        onPress={() => navigation.navigate("Registration")}
+      >
+        Continue with Email
+      </Text>
+    </SafeAreaView>
+  );
+};
+
+export default WelcomeScreen;

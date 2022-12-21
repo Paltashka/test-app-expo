@@ -2,9 +2,11 @@ import React from "react";
 import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import Gift from "../assets/images/gift.png";
-import FortuneWheel from "../assets/images/Congratulations.png";
+import youwon from "../assets/images/youwon.png";
+import { useNavigation } from "@react-navigation/native";
 
 const CongratulationsModal = ({ goToNextStep }: any) => {
+  const navigation = useNavigation();
   return (
     <Modal visible={true} transparent={true}>
       <View style={styles.backdrop}></View>
@@ -12,26 +14,22 @@ const CongratulationsModal = ({ goToNextStep }: any) => {
         <Image source={Gift} />
       </View>
       <View style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Congratulations!</Text>
+        <Text style={styles.modalTitle}>You just won!</Text>
+        <Image source={youwon} style={styles.modalImage} />
         <Text style={styles.modalText}>
-          You won{" "}
-          <View style={styles.specialText}>
-            <Text style={styles.boldText}>Sticker </Text>
-            <Text style={styles.smallText}>215</Text>
-          </View>{" "}
-          ! You can find it in <Text style={styles.boldText}>Settings</Text>{" "}
-          section.
+          Congrats! You can spend EMBER on getting REWARDS like your favorite
+          gift cards!{" "}
         </Text>
-        <Image source={FortuneWheel} style={styles.modalImage} />
-        <Text style={styles.subtext}>
-          Spookies is a ghost-themed NFT project that passed over to the OpenSea
-          realm in July.
-        </Text>
-        <Button
-          text="Start Using PlayEmber  »"
-          type="play"
-          onClick={() => goToNextStep()}
-        />
+        <View style={styles.nextStepButton}>
+          <Button
+            text="Start Using PlayEmber  »"
+            type="play"
+            onClick={() => {
+              goToNextStep();
+              navigation.navigate("TabRewardsScreen");
+            }}
+          />
+        </View>
       </View>
     </Modal>
   );
@@ -48,11 +46,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    height: 540,
+    height: 325,
     width: "90%",
     borderRadius: 24,
     position: "absolute",
-    top: "20%",
+    top: "30%",
     left: "5%",
   },
   modalTitle: {
@@ -64,6 +62,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.3,
     color: "#170A4B",
     width: 200,
+    marginTop: 16,
   },
   modalText: {
     fontStyle: "normal",
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "absolute",
     left: "40%",
-    top: "15%",
+    top: "25%",
     width: "20%",
     height: "10%",
     zIndex: 2,
@@ -91,20 +90,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
   },
-  specialText: {
-    display: "flex",
-    flexDirection: "row",
-    height: 15,
-  },
-  boldText: {
-    fontWeight: "bold",
-  },
-  smallText: {
-    fontSize: 8,
-    fontWeight: "400",
-  },
   modalImage: {
-    marginTop: -25,
+    marginTop: 16,
   },
   subtext: {
     color: "#616691",
@@ -112,6 +99,9 @@ const styles = StyleSheet.create({
     width: "90%",
     textAlign: "center",
     marginBottom: 24,
+  },
+  nextStepButton: {
+    marginTop: 16,
   },
 });
 

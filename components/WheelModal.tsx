@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import Gift from "../assets/images/gift.png";
-import FortuneWheel from "../assets/images/Colorful_wheel_of_fortune.png";
+import spinnigwheel from "../assets/images/spinningwheel.png";
 
 const WheelModal = ({ goToNextStep }: any) => {
   return (
@@ -16,7 +16,7 @@ const WheelModal = ({ goToNextStep }: any) => {
           Turn the wheel, get your first reward
         </Text>
         <Text style={styles.modalText}>for free!</Text>
-        <Image source={FortuneWheel} />
+        <Image source={spinnigwheel} />
         <View style={styles.modalButton}>
           <Button
             text="Spin the Fortune Wheel  »"

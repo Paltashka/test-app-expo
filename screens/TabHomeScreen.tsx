@@ -31,6 +31,7 @@ import WheelModal from "../components/WheelModal";
 import CongratulationsModal from "../components/CongratulationsModal";
 import WelcomeModal from "../components/WelcomeModal";
 import WhatYouLike from "./WhatYouLike";
+import WelcomeScreen from "./WelcomeScreen";
 
 const hotRevards = [
   {
@@ -198,20 +199,21 @@ export default function TabHomeScreen({
 }: RootTabScreenProps<"TabHomeScreen">) {
   const [step, setStep] = useState(0);
 
-  console.log(step);
-
   const goToNextStep = () => setStep(prev => prev + 1);
+
+  useEffect(() => {
+    if (step == 0) {
+      navigation.navigate("WelcomeScreen", {
+        goToNextStep,
+      });
+    }
+  });
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {step == 0 && (
-          <WelcomeModal
-            goToNextStep={() => goToNextStep()}
-            brandData={brandData}
-          />
-        )}
-        {step == 2 && <WheelModal goToNextStep={goToNextStep} />}
-        {step == 3 && <CongratulationsModal goToNextStep={goToNextStep} />}
+        {step == 1 && <WelcomeModal goToNextStep={() => goToNextStep()} />}
+        {step == 3 && <WheelModal goToNextStep={goToNextStep} />}
+        {step == 4 && <CongratulationsModal goToNextStep={goToNextStep} />}
         <View style={[styles.headerContainer, styles.topContainer]}>
           <Image source={Logo} />
           <Button

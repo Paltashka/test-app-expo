@@ -15,8 +15,8 @@ const WelcomeModal = ({ goToNextStep }: any) => {
       <View style={styles.modalContent}>
         <Text style={styles.modalTitle}>Welcome to Play Ember!</Text>
         <Text style={styles.modalText}>
-          Spookies is a ghost-themed NFT project that passed over to the OpenSea
-          realm in July.
+          Get cool rewards for playing games, let's choose together what types
+          of rewards you like and get you going!
         </Text>
         <Button
           text="Get Started  »"
