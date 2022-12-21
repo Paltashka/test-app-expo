@@ -40,6 +40,11 @@ import RegistrationScreen from "../screens/RegistrationScreen";
 import FaceIDSceen from "../screens/FaceIDSceen";
 import LoginScreen from "../screens/LogIn";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
+import SettingsScreen from "../screens/SettingsScreen";
+import MyProfile from "../screens/MyProfile";
+import FAQScreen from "../screens/FAQScreen";
+import ContactUs from "../screens/ContactUsScreen";
+import About from "../screens/About";
 
 const brandData = [
   { id: 1, img: require("../assets/images/Brand_1.png"), selected: false },
@@ -218,6 +223,26 @@ function RootNavigator() {
         component={ForgotPasswordScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ContactUs"
+        component={ContactUs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="About"
+        component={About}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -272,10 +297,11 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="myVerse"
-        component={TabRewardsScreen}
+        name="Settings"
+        component={SettingsScreen}
         options={{
-          title: "myVerse",
+          title: "Settings",
+          headerShown: false,
           tabBarIcon: ({ color }) => <Image source={userCircleIcon} />,
         }}
       />

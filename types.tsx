@@ -29,6 +29,10 @@ export type RootStackParamList = {
   FaceIDScreen: undefined;
   Login: undefined;
   ForgotPasswordScreen: undefined;
+  MyProfile: undefined;
+  FAQ: undefined;
+  ContactUs: undefined;
+  About: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -38,7 +42,7 @@ export type RootTabParamList = {
   TabHomeScreen: undefined;
   TabRewardsScreen: undefined;
   TabGamesScreen: undefined;
-  myVerse: undefined;
+  Settings: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

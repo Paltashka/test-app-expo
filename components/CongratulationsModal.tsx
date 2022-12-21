@@ -19,7 +19,7 @@ const CongratulationsModal = ({ goToNextStep }: any) => {
             <Text style={styles.boldText}>Sticker </Text>
             <Text style={styles.smallText}>215</Text>
           </View>{" "}
-          ! You can find it in <Text style={styles.boldText}>myVerse</Text>{" "}
+          ! You can find it in <Text style={styles.boldText}>Settings</Text>{" "}
           section.
         </Text>
         <Image source={FortuneWheel} style={styles.modalImage} />
