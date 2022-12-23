@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import LogoModal from "../assets/images/Vector.png";
-import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 
-const WelcomeModal = ({ goToNextStep }: any) => {
-  const navigation = useNavigation();
+const WelcomeModal = ({ navigation }: any) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const route = useRoute();
+
   return (
-    <Modal visible={true} transparent={true}>
+    <Modal visible={isVisible} transparent={true}>
       <View style={styles.backdrop}></View>
       <View style={styles.modalLogo}>
         <Image source={LogoModal} />
@@ -22,10 +24,8 @@ const WelcomeModal = ({ goToNextStep }: any) => {
           text="Get Started  »"
           type="play"
           onClick={() => {
-            navigation.navigate("BrandsYouLike", {
-              next: goToNextStep,
-            });
-            goToNextStep();
+            navigation.navigate("BrandsYouLike");
+            setIsVisible(prev => !prev);
           }}
         />
       </View>

@@ -4,7 +4,7 @@ import { Button } from "./Button/Button";
 import Gift from "../assets/images/gift.png";
 import spinnigwheel from "../assets/images/spinningwheel.png";
 
-const WheelModal = ({ goToNextStep }: any) => {
+const WheelModal = ({ navigation }: any) => {
   return (
     <Modal visible={true} transparent={true}>
       <View style={styles.backdrop}></View>
@@ -21,7 +21,9 @@ const WheelModal = ({ goToNextStep }: any) => {
           <Button
             text="Spin the Fortune Wheel  »"
             type="play"
-            onClick={() => goToNextStep()}
+            onClick={() =>
+              navigation.navigate("TabHomeScreen", { type: "CONGRATULATION" })
+            }
           />
         </View>
       </View>

@@ -58,9 +58,6 @@ const WhatYouLike = ({ route }: propsType) => {
           style={styles.skipButton}
           onPress={() => {
             route.params.nextStepHandler();
-            if (route.params.type == "Brand") {
-              route.params.next();
-            }
           }}
         >
           Skip
@@ -97,9 +94,6 @@ const WhatYouLike = ({ route }: propsType) => {
           text="Next"
           onClick={() => {
             route.params.nextStepHandler();
-            if (route.params.type == "Brand") {
-              route.params.next();
-            }
           }}
         ></Button>
       </View>

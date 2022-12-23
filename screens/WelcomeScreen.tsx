@@ -90,7 +90,7 @@ const WelcomeScreen = ({ route }: any) => {
           type="play"
           onClick={() => {
             route.params.goToNextStep();
-            navigation.navigate("TabHomeScreen", { next: () => {} });
+            navigation.navigate("TabHomeScreen", { type: "WELCOME" });
           }}
         />
       </View>

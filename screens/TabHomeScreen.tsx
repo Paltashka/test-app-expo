@@ -196,24 +196,30 @@ const categoriesData = [
 
 export default function TabHomeScreen({
   navigation,
+  route,
 }: RootTabScreenProps<"TabHomeScreen">) {
   const [step, setStep] = useState(0);
 
   const goToNextStep = () => setStep(prev => prev + 1);
 
   useEffect(() => {
-    if (step == 0) {
+    if (!step) {
       navigation.navigate("WelcomeScreen", {
         goToNextStep,
       });
     }
-  });
+  }, []);
+
+  console.log(route.params);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {step == 1 && <WelcomeModal goToNextStep={() => goToNextStep()} />}
-        {step == 3 && <WheelModal goToNextStep={goToNextStep} />}
-        {step == 4 && <CongratulationsModal goToNextStep={goToNextStep} />}
+        {route.params.type == "WELCOME" && (
+          <WelcomeModal navigation={navigation} />
+        )}
+        {route.params.type == "WHEEL" && <WheelModal navigation={navigation} />}
+        {route.params.type == "CONGRATULATION" && <CongratulationsModal />}
         <View style={[styles.headerContainer, styles.topContainer]}>
           <Image source={Logo} />
           <Button

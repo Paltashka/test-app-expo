@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import Gift from "../assets/images/gift.png";
 import youwon from "../assets/images/youwon.png";
 import { useNavigation } from "@react-navigation/native";
 
-const CongratulationsModal = ({ goToNextStep }: any) => {
+const CongratulationsModal = () => {
+  const [isVisible, setIsVisible] = useState(true);
   const navigation = useNavigation();
   return (
-    <Modal visible={true} transparent={true}>
+    <Modal visible={isVisible} transparent={true}>
       <View style={styles.backdrop}></View>
       <View style={styles.modalLogo}>
         <Image source={Gift} />
@@ -25,7 +26,7 @@ const CongratulationsModal = ({ goToNextStep }: any) => {
             text="Start Using PlayEmber  »"
             type="play"
             onClick={() => {
-              goToNextStep();
+              setIsVisible(prev => !prev);
               navigation.navigate("TabRewardsScreen");
             }}
           />

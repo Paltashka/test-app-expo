@@ -31,10 +31,14 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import homeIcon from "../assets/images/home-04.png";
+import homeIcon from "../assets/images/home.png";
+import homeActiveIcon from "../assets/images/home-active.png";
 import rewardsIcon from "../assets/images/rewards.png";
+import rewardsActiveIcon from "../assets/images/rewards-active.png";
 import globeIcon from "../assets/images/globe.png";
+import globeActiveIcon from "../assets/images/globe-active.png";
 import userCircleIcon from "../assets/images/user-circle.png";
+import userCircleActiveIcon from "../assets/images/user-circle-active.png";
 import WhatYouLike from "../screens/WhatYouLike";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import FaceIDSceen from "../screens/FaceIDSceen";
@@ -200,7 +204,8 @@ function RootNavigator() {
           data: categoriesData,
           type: "Categories",
           pageNumber: 2,
-          nextStepHandler: () => navigation.navigate("TabHomeScreen"),
+          nextStepHandler: () =>
+            navigation.navigate("TabHomeScreen", { type: "WHEEL" }),
         }}
       />
       <Stack.Screen
@@ -262,6 +267,7 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: Colors.dark.tint,
       }}
+
       // screenOptions={({ route }) => {
       //   console.log(route.name);
       // }}
@@ -269,11 +275,14 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabHomeScreen"
         component={TabHomeScreen}
+        initialParams={{ type: "DEFAULT" }}
         options={({ navigation }: RootTabScreenProps<"TabHomeScreen">) => ({
           title: "Home",
           headerShown: false,
 
-          tabBarIcon: ({ color }) => <Image source={homeIcon} />,
+          tabBarIcon: ({ focused }) => (
+            <Image source={focused ? homeActiveIcon : homeIcon} />
+          ),
         })}
       />
       <BottomTab.Screen
@@ -283,7 +292,9 @@ function BottomTabNavigator() {
           title: "Rewards",
           headerShown: false,
 
-          tabBarIcon: ({ color }) => <Image source={rewardsIcon} />,
+          tabBarIcon: ({ focused }) => (
+            <Image source={focused ? rewardsActiveIcon : rewardsIcon} />
+          ),
         })}
       />
       <BottomTab.Screen
@@ -293,7 +304,9 @@ function BottomTabNavigator() {
           title: "Games",
           headerShown: false,
 
-          tabBarIcon: ({ color }) => <Image source={globeIcon} />,
+          tabBarIcon: ({ focused }) => (
+            <Image source={focused ? globeActiveIcon : globeIcon} />
+          ),
         })}
       />
       <BottomTab.Screen
@@ -302,7 +315,9 @@ function BottomTabNavigator() {
         options={{
           title: "Settings",
           headerShown: false,
-          tabBarIcon: ({ color }) => <Image source={userCircleIcon} />,
+          tabBarIcon: ({ focused }) => (
+            <Image source={focused ? userCircleActiveIcon : userCircleIcon} />
+          ),
         }}
       />
     </BottomTab.Navigator>
