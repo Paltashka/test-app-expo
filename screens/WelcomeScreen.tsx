@@ -89,7 +89,6 @@ const WelcomeScreen = ({ route }: any) => {
           text="Start as a guest"
           type="play"
           onClick={() => {
-            route.params.goToNextStep();
             navigation.navigate("TabHomeScreen", { type: "WELCOME" });
           }}
         />
