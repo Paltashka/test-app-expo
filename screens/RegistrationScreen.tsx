@@ -48,6 +48,13 @@ const RegistrationScreen = () => {
     }
   };
 
+  const passwordValidate = (boolean: boolean | null | RegExpMatchArray) => {
+    return password === ""
+      ? styles.nonActive
+      : boolean
+      ? styles.successfully
+      : styles.rejected;
+  };
   return (
     <SafeAreaView style={styles.regisScreen}>
       <View style={styles.header}>
@@ -86,50 +93,22 @@ const RegistrationScreen = () => {
         </View>
         <View style={styles.requirement}>
           <View style={styles.requirementBlock}>
-            <Text
-              style={
-                password === ""
-                  ? styles.nonActive
-                  : password.length >= 8
-                  ? styles.successfully
-                  : styles.rejected
-              }
-            >
+            <Text style={passwordValidate(password.length >= 8)}>
               Minimum 8 characters
             </Text>
-            <Text
-              style={
-                password === ""
-                  ? styles.nonActive
-                  : password.match(/\d/g)
-                  ? styles.successfully
-                  : styles.rejected
-              }
-            >
+            <Text style={passwordValidate(password.match(/\d/g))}>
               1 numerical
             </Text>
           </View>
           <View style={styles.requirementBlock}>
             <Text
-              style={
-                password === ""
-                  ? styles.nonActive
-                  : password.match(/[A-Z]/g) && password.match(/[a-z]/g)
-                  ? styles.successfully
-                  : styles.rejected
-              }
+              style={passwordValidate(
+                password.match(/[A-Z]/g) && password.match(/[a-z]/g)
+              )}
             >
               1 UPPER or lower case
             </Text>
-            <Text
-              style={
-                password === ""
-                  ? styles.nonActive
-                  : password.match(/\W/g)
-                  ? styles.successfully
-                  : styles.rejected
-              }
-            >
+            <Text style={passwordValidate(password.match(/\W/g))}>
               1 special character
             </Text>
           </View>
@@ -223,15 +202,6 @@ const styles = StyleSheet.create({
     color: "#39BC64",
     width: 180,
     position: "relative",
-    // "&::before": {
-    //   content: `--`,
-    //   display: "block",
-    //   position: "absolute",
-    //   left: "0",
-    //   top: "0",
-    //   width: "10",
-    //   height: "10",
-    // },
   },
   rejected: {
     fontSize: 13,

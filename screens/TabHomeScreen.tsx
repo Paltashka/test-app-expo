@@ -204,22 +204,20 @@ export default function TabHomeScreen({
 
   useEffect(() => {
     if (!step) {
-      navigation.navigate("WelcomeScreen", {
-        goToNextStep,
-      });
+      navigation.navigate("WelcomeScreen");
     }
   }, []);
-
-  console.log(route.params);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {route.params.type == "WELCOME" && (
+        {route.params?.["type"] == "WELCOME" && (
           <WelcomeModal navigation={navigation} />
         )}
-        {route.params.type == "WHEEL" && <WheelModal navigation={navigation} />}
-        {route.params.type == "CONGRATULATION" && <CongratulationsModal />}
+        {route.params?.["type"] == "WHEEL" && (
+          <WheelModal navigation={navigation} />
+        )}
+        {route.params?.["type"] == "CONGRATULATION" && <CongratulationsModal />}
         <View style={[styles.headerContainer, styles.topContainer]}>
           <Image source={Logo} />
           <Button

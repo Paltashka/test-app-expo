@@ -9,12 +9,11 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
-  TabRouter,
   useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Dimensions, Image, Pressable } from "react-native";
+import { ColorSchemeName, Image } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -192,7 +191,6 @@ function RootNavigator() {
           data: brandData,
           type: "Brand",
           pageNumber: 1,
-          nextStepHandler: () => navigation.navigate("CategoriesYouLike"),
         }}
       />
       <Stack.Screen
@@ -204,8 +202,6 @@ function RootNavigator() {
           data: categoriesData,
           type: "Categories",
           pageNumber: 2,
-          nextStepHandler: () =>
-            navigation.navigate("TabHomeScreen", { type: "WHEEL" }),
         }}
       />
       <Stack.Screen
@@ -276,7 +272,7 @@ function BottomTabNavigator() {
         name="TabHomeScreen"
         component={TabHomeScreen}
         initialParams={{ type: "DEFAULT" }}
-        options={({ navigation }: RootTabScreenProps<"TabHomeScreen">) => ({
+        options={() => ({
           title: "Home",
           headerShown: false,
 

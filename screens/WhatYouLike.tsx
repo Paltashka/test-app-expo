@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import {
   Image,
@@ -18,8 +19,6 @@ interface propsType {
       pageNumber: number;
       isText?: boolean;
       data: dataType[];
-      nextStepHandler: Function;
-      next: Function;
     };
   };
 }
@@ -31,10 +30,11 @@ interface dataType {
 }
 const WhatYouLike = ({ route }: propsType) => {
   const [departmentData, setDepartmentData] = useState(route.params.data);
-
+  const navigation = useNavigation();
   const selectedAount = departmentData.filter(
     (department: dataType) => department.selected == true
   ).length;
+
   const selectedHandler = (id: number) => {
     const toggleSelectedDepartment = departmentData.map(
       (department: dataType) => {
@@ -47,6 +47,14 @@ const WhatYouLike = ({ route }: propsType) => {
     setDepartmentData(toggleSelectedDepartment);
   };
 
+  const nextStepNavigate = () => {
+    if (route.params.type === "Brand") {
+      navigation.navigate("CategoriesYouLike");
+    } else {
+      navigation.navigate("TabHomeScreen", { type: "WHEEL" });
+    }
+  };
+
   return (
     <SafeAreaView style={styles.departmentPage}>
       <View style={styles.pageHeader}>
@@ -57,7 +65,7 @@ const WhatYouLike = ({ route }: propsType) => {
         <Text
           style={styles.skipButton}
           onPress={() => {
-            route.params.nextStepHandler();
+            nextStepNavigate();
           }}
         >
           Skip
@@ -92,9 +100,7 @@ const WhatYouLike = ({ route }: propsType) => {
         <Button
           type="play"
           text="Next"
-          onClick={() => {
-            route.params.nextStepHandler();
-          }}
+          onClick={() => nextStepNavigate()}
         ></Button>
       </View>
     </SafeAreaView>

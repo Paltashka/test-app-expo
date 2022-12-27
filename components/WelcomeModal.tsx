@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import LogoModal from "../assets/images/Vector.png";
-import { useRoute } from "@react-navigation/native";
 
 const WelcomeModal = ({ navigation }: any) => {
   const [isVisible, setIsVisible] = useState(true);
-  const route = useRoute();
 
   return (
     <Modal visible={isVisible} transparent={true}>

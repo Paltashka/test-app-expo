@@ -6,14 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 import bannerImg from "../assets/images/banner_logos.png";
 import logoImg from "../assets/images/logo_white.png";
 
-import {
-  ImageBackground,
-  SafeAreaView,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { ImageBackground, SafeAreaView } from "react-native";
 
-import CloseIcon from "../assets/images/close.png";
 import { ButtonRegistrtion } from "../components/Registration-button/ButtonRegistrtion";
 
 const styles2 = StyleSheet.create({
@@ -52,7 +46,7 @@ const styles2 = StyleSheet.create({
   },
 });
 
-const WelcomeScreen = ({ route }: any) => {
+const WelcomeScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles2.container}>
